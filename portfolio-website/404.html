@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Portfolio</title>
+  <meta name="description" content="The page you're looking for couldn't be found. Let's get you back on track.">
+  
+  <!-- Pre-paint theme application to prevent flash -->
+  <script>
+    (function() {
+      const getPhase = () => {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 10) return 'morning';
+        if (hour >= 10 && hour < 16) return 'afternoon';
+        if (hour >= 16 && hour < 19) return 'evening';
+        return 'night';
+      };
+      
+      const getMode = () => {
+        try {
+          const stored = localStorage.getItem('portfolio-theme-mode');
+          return ['auto', 'light', 'dark'].includes(stored) ? stored : 'auto';
+        } catch (e) {
+          return 'auto';
+        }
+      };
+      
+      const getTheme = (mode) => {
+        if (mode === 'auto') {
+          try {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          } catch (e) {
+            return 'light';
+          }
+        }
+        return mode;
+      };
+      
+      const mode = getMode();
+      const phase = getPhase();
+      const theme = getTheme(mode);
+      
+      document.documentElement.setAttribute('data-mode', mode);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-phase', phase);
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="header-brand">dev • full‑stack</a>
+        
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+          
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-label">Auto</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="error-page">
+      <div class="container">
+        <div class="max-width-prose" style="margin: 0 auto;">
+          <!-- Error Code -->
+          <div class="error-code">404</div>
+          
+          <!-- Error Message -->
+          <h1 style="margin-bottom: var(--space-6);">Page Not Found</h1>
+          <p class="text-large text-muted mb-8">
+            Sorry, the page you're looking for doesn't exist or has been moved. 
+            This could be due to a broken link, a mistyped URL, or the page may have been removed.
+          </p>
+          
+          <!-- Navigation Help -->
+          <div class="glass-panel cyber-glow" style="margin-bottom: var(--space-12);">
+            <h2 style="margin-bottom: var(--space-6);">What can you do?</h2>
+            
+            <div class="grid grid-2 gap-6">
+              <div>
+                <h3 style="font-size: 1.125rem; margin-bottom: var(--space-3);">
+                  🏠 Go Home
+                </h3>
+                <p class="text-muted text-sm mb-3">
+                  Visit the homepage to start fresh and explore the main sections of the portfolio.
+                </p>
+                <a href="index.html" class="btn btn-primary">Return Home</a>
+              </div>
+              
+              <div>
+                <h3 style="font-size: 1.125rem; margin-bottom: var(--space-3);">
+                  🔍 Browse Projects
+                </h3>
+                <p class="text-muted text-sm mb-3">
+                  Check out the projects section to see examples of my work and technical expertise.
+                </p>
+                <a href="projects.html" class="btn">View Projects</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick Links -->
+          <div class="card neo-brutal">
+            <h3 style="margin-bottom: var(--space-4);">Quick Links</h3>
+            
+            <div class="grid grid-2 gap-4">
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: var(--space-2);">
+                  <a href="index.html" class="text-muted" style="text-decoration: none;">
+                    → Homepage
+                  </a>
+                </li>
+                <li style="margin-bottom: var(--space-2);">
+                  <a href="about.html" class="text-muted" style="text-decoration: none;">
+                    → About Me
+                  </a>
+                </li>
+                <li style="margin-bottom: 0;">
+                  <a href="contact.html" class="text-muted" style="text-decoration: none;">
+                    → Contact
+                  </a>
+                </li>
+              </ul>
+              
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: var(--space-2);">
+                  <a href="projects.html" class="text-muted" style="text-decoration: none;">
+                    → All Projects
+                  </a>
+                </li>
+                <li style="margin-bottom: var(--space-2);">
+                  <button onclick="history.back()" class="text-muted" style="background: none; border: none; padding: 0; cursor: pointer; text-decoration: none;">
+                    → Go Back
+                  </button>
+                </li>
+                <li style="margin-bottom: 0;">
+                  <a href="#" onclick="window.location.reload(); return false;" class="text-muted" style="text-decoration: none;">
+                    → Refresh Page
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Contact Section -->
+          <div style="text-align: center; margin-top: var(--space-12);">
+            <h3>Still can't find what you're looking for?</h3>
+            <p class="text-muted mb-6">
+              If you believe this is an error or you were expecting to find something specific, 
+              please don't hesitate to reach out. I'm here to help!
+            </p>
+            <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="theme.js" defer></script>
+  
+  <!-- Additional 404 functionality -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Log 404 for analytics (if you had analytics)
+      console.log('404 Page View:', {
+        url: window.location.href,
+        referrer: document.referrer,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+      });
+      
+      // Auto-redirect after delay (optional - commented out for better UX)
+      // setTimeout(() => {
+      //   if (confirm('Would you like to be redirected to the homepage?')) {
+      //     window.location.href = 'index.html';
+      //   }
+      // }, 10000);
+      
+      // Enhance back button functionality
+      const backButtons = document.querySelectorAll('[onclick*="history.back"]');
+      backButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Check if there's history to go back to
+          if (window.history.length > 1 && document.referrer) {
+            window.history.back();
+          } else {
+            // Fallback to homepage if no history
+            window.location.href = 'index.html';
+          }
+        });
+      });
+      
+      // Add keyboard shortcuts for navigation
+      document.addEventListener('keydown', function(e) {
+        // Press 'h' to go home
+        if (e.key === 'h' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          const activeElement = document.activeElement;
+          // Only trigger if not typing in an input
+          if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+            window.location.href = 'index.html';
+          }
+        }
+        
+        // Press 'p' to view projects
+        if (e.key === 'p' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          const activeElement = document.activeElement;
+          if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+            window.location.href = 'projects.html';
+          }
+        }
+      });
+      
+      // Show keyboard shortcuts hint
+      const keyboardHint = document.createElement('div');
+      keyboardHint.innerHTML = `
+        <div class="badge" style="position: fixed; bottom: var(--space-6); left: var(--space-6); z-index: 100; opacity: 0.7;">
+          Shortcuts: H → Home, P → Projects
+        </div>
+      `;
+      document.body.appendChild(keyboardHint);
+      
+      // Hide hint after 5 seconds
+      setTimeout(() => {
+        keyboardHint.style.opacity = '0';
+        keyboardHint.style.transition = 'opacity var(--transition)';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

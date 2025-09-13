@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Portfolio</title>
+  <meta name="description" content="Explore my engineering projects showcasing modern web development, performance optimization, and technical innovation.">
+  
+  <!-- Pre-paint theme application to prevent flash -->
+  <script>
+    (function() {
+      const getPhase = () => {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 10) return 'morning';
+        if (hour >= 10 && hour < 16) return 'afternoon';
+        if (hour >= 16 && hour < 19) return 'evening';
+        return 'night';
+      };
+      
+      const getMode = () => {
+        try {
+          const stored = localStorage.getItem('portfolio-theme-mode');
+          return ['auto', 'light', 'dark'].includes(stored) ? stored : 'auto';
+        } catch (e) {
+          return 'auto';
+        }
+      };
+      
+      const getTheme = (mode) => {
+        if (mode === 'auto') {
+          try {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          } catch (e) {
+            return 'light';
+          }
+        }
+        return mode;
+      };
+      
+      const mode = getMode();
+      const phase = getPhase();
+      const theme = getTheme(mode);
+      
+      document.documentElement.setAttribute('data-mode', mode);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-phase', phase);
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="header-brand">dev • full‑stack</a>
+        
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="projects.html" class="nav-link" aria-current="page">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+          
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-label">Auto</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <section class="container" style="padding: var(--space-16) 0;">
+      <div class="text-center max-width-prose" style="margin: 0 auto;">
+        <h1>Featured Projects</h1>
+        <p class="text-large text-muted">
+          A collection of engineering projects showcasing modern web development practices, 
+          performance optimization, and innovative technical solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Controls -->
+    <section class="container">
+      <div class="filter-controls">
+        <h3 class="mb-4">Filter Projects</h3>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="form-input filter-input" 
+          placeholder="Search projects by name or description..."
+          aria-label="Search projects"
+        >
+        
+        <div class="filter-tags" role="group" aria-label="Filter by technology">
+          <button class="tag-filter active" data-tag="all">All</button>
+          <button class="tag-filter" data-tag="javascript">JavaScript</button>
+          <button class="tag-filter" data-tag="typescript">TypeScript</button>
+          <button class="tag-filter" data-tag="react">React</button>
+          <button class="tag-filter" data-tag="nextjs">Next.js</button>
+          <button class="tag-filter" data-tag="nodejs">Node.js</button>
+          <button class="tag-filter" data-tag="python">Python</button>
+          <button class="tag-filter" data-tag="cloud">Cloud</button>
+          <button class="tag-filter" data-tag="database">Database</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="container">
+      <div class="grid grid-3" id="projects-grid">
+        <!-- E-Commerce Platform -->
+        <div class="project-card" data-tags="typescript,nextjs,react,stripe,postgresql,database">
+          <div class="project-image">🚀</div>
+          <div class="project-content">
+            <div class="project-featured">
+              <span class="badge badge-featured">Featured</span>
+            </div>
+            <h3 class="project-title">E-Commerce Platform</h3>
+            <p class="project-description">
+              Full-stack e-commerce solution with real-time inventory management, 
+              Stripe payment integration, and comprehensive admin dashboard. 
+              Built with performance and scalability in mind.
+            </p>
+            <div class="project-tags">
+              <span class="badge">Next.js</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">Stripe</span>
+              <span class="badge">PostgreSQL</span>
+              <span class="badge">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <div class="project-card" data-tags="react,javascript,d3js,nodejs,mongodb,database">
+          <div class="project-image">📊</div>
+          <div class="project-content">
+            <h3 class="project-title">Analytics Dashboard</h3>
+            <p class="project-description">
+              Real-time business intelligence platform featuring interactive data visualizations, 
+              custom reporting, and automated insights generation. Handles millions of data points efficiently.
+            </p>
+            <div class="project-tags">
+              <span class="badge">React</span>
+              <span class="badge">D3.js</span>
+              <span class="badge">Node.js</span>
+              <span class="badge">MongoDB</span>
+              <span class="badge">WebSockets</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DevOps Toolkit -->
+        <div class="project-card" data-tags="docker,kubernetes,aws,cloud,python,terraform">
+          <div class="project-image">🔧</div>
+          <div class="project-content">
+            <div class="project-featured">
+              <span class="badge badge-featured">Featured</span>
+            </div>
+            <h3 class="project-title">DevOps Automation Suite</h3>
+            <p class="project-description">
+              Comprehensive DevOps toolkit featuring automated CI/CD pipelines, 
+              infrastructure as code, monitoring, and deployment orchestration across multiple cloud providers.
+            </p>
+            <div class="project-tags">
+              <span class="badge">Docker</span>
+              <span class="badge">Kubernetes</span>
+              <span class="badge">AWS</span>
+              <span class="badge">Terraform</span>
+              <span class="badge">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task Management App -->
+        <div class="project-card" data-tags="react,typescript,nodejs,postgresql,database">
+          <div class="project-image">✅</div>
+          <div class="project-content">
+            <h3 class="project-title">Collaborative Task Manager</h3>
+            <p class="project-description">
+              Real-time collaborative task management platform with team workspaces, 
+              advanced filtering, time tracking, and project analytics. Optimized for team productivity.
+            </p>
+            <div class="project-tags">
+              <span class="badge">React</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">Node.js</span>
+              <span class="badge">PostgreSQL</span>
+              <span class="badge">Socket.IO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Gateway -->
+        <div class="project-card" data-tags="nodejs,typescript,microservices,redis,cloud">
+          <div class="project-image">🌐</div>
+          <div class="project-content">
+            <h3 class="project-title">Microservices API Gateway</h3>
+            <p class="project-description">
+              High-performance API gateway handling authentication, rate limiting, 
+              load balancing, and service discovery for microservices architecture.
+            </p>
+            <div class="project-tags">
+              <span class="badge">Node.js</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">Redis</span>
+              <span class="badge">Docker</span>
+              <span class="badge">Kong</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ML Data Pipeline -->
+        <div class="project-card" data-tags="python,machinelearning,aws,cloud,tensorflow">
+          <div class="project-image">🤖</div>
+          <div class="project-content">
+            <h3 class="project-title">ML Data Pipeline</h3>
+            <p class="project-description">
+              Scalable machine learning pipeline for data ingestion, processing, 
+              model training, and deployment with automated monitoring and retraining capabilities.
+            </p>
+            <div class="project-tags">
+              <span class="badge">Python</span>
+              <span class="badge">TensorFlow</span>
+              <span class="badge">AWS Lambda</span>
+              <span class="badge">Apache Airflow</span>
+              <span class="badge">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Application -->
+        <div class="project-card" data-tags="react,typescript,nodejs,websockets,redis">
+          <div class="project-image">💬</div>
+          <div class="project-content">
+            <h3 class="project-title">Real-time Chat Platform</h3>
+            <p class="project-description">
+              Scalable real-time messaging platform with end-to-end encryption, 
+              file sharing, video calls, and advanced moderation tools.
+            </p>
+            <div class="project-tags">
+              <span class="badge">React</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">Node.js</span>
+              <span class="badge">WebRTC</span>
+              <span class="badge">Redis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Website -->
+        <div class="project-card" data-tags="javascript,html,css,responsive,accessibility">
+          <div class="project-image">🎨</div>
+          <div class="project-content">
+            <h3 class="project-title">Portfolio Website</h3>
+            <p class="project-description">
+              Engineering-focused portfolio with time-based theming, advanced CSS techniques, 
+              and accessibility-first design. Built with vanilla technologies for optimal performance.
+            </p>
+            <div class="project-tags">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">WCAG AA</span>
+              <span class="badge">Performance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLI Tool -->
+        <div class="project-card" data-tags="nodejs,typescript,cli,npm">
+          <div class="project-image">⚡</div>
+          <div class="project-content">
+            <h3 class="project-title">Developer CLI Tool</h3>
+            <p class="project-description">
+              Command-line interface tool for automating common development workflows, 
+              project scaffolding, and code generation with interactive prompts.
+            </p>
+            <div class="project-tags">
+              <span class="badge">Node.js</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">Commander.js</span>
+              <span class="badge">Inquirer</span>
+              <span class="badge">NPM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No results message -->
+      <div id="no-results" class="text-center" style="display: none; padding: var(--space-16) 0;">
+        <div class="glass-panel" style="max-width: 500px; margin: 0 auto;">
+          <h3>No projects found</h3>
+          <p class="text-muted">Try adjusting your search terms or filters to find more projects.</p>
+          <button id="reset-filters" class="btn btn-primary mt-4">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container" style="margin: var(--space-20) auto; text-align: center;">
+      <div class="glass-panel cyber-glow" style="max-width: 600px; margin: 0 auto;">
+        <h2>Interested in collaborating?</h2>
+        <p class="text-large text-muted mb-6">
+          These projects represent just a sample of my work. Let's discuss how I can help bring your ideas to life.
+        </p>
+        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="theme.js" defer></script>
+  
+  <!-- Project filtering functionality -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('search-input');
+      const filterButtons = document.querySelectorAll('.tag-filter');
+      const projectCards = document.querySelectorAll('.project-card');
+      const projectsGrid = document.getElementById('projects-grid');
+      const noResults = document.getElementById('no-results');
+      const resetButton = document.getElementById('reset-filters');
+
+      let activeFilter = 'all';
+      let searchTerm = '';
+
+      function filterProjects() {
+        let visibleCount = 0;
+
+        projectCards.forEach(card => {
+          const tags = card.dataset.tags.split(',');
+          const title = card.querySelector('.project-title').textContent.toLowerCase();
+          const description = card.querySelector('.project-description').textContent.toLowerCase();
+          
+          const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
+          const matchesSearch = searchTerm === '' || 
+            title.includes(searchTerm) || 
+            description.includes(searchTerm) ||
+            tags.some(tag => tag.includes(searchTerm));
+
+          if (matchesFilter && matchesSearch) {
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+          noResults.style.display = 'block';
+          projectsGrid.style.display = 'none';
+        } else {
+          noResults.style.display = 'none';
+          projectsGrid.style.display = 'grid';
+        }
+      }
+
+      // Search functionality
+      searchInput.addEventListener('input', function(e) {
+        searchTerm = e.target.value.toLowerCase().trim();
+        filterProjects();
+      });
+
+      // Filter button functionality
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Update active filter
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          activeFilter = this.dataset.tag;
+          filterProjects();
+        });
+      });
+
+      // Reset filters
+      resetButton.addEventListener('click', function() {
+        searchInput.value = '';
+        searchTerm = '';
+        activeFilter = 'all';
+        
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('[data-tag="all"]').classList.add('active');
+        
+        filterProjects();
+      });
+
+      // Keyboard navigation for filter buttons
+      filterButtons.forEach(button => {
+        button.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Portfolio</title>
+  <meta name="description" content="Get in touch to discuss projects, collaborations, or opportunities. Let's build something amazing together.">
+  
+  <!-- Pre-paint theme application to prevent flash -->
+  <script>
+    (function() {
+      const getPhase = () => {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 10) return 'morning';
+        if (hour >= 10 && hour < 16) return 'afternoon';
+        if (hour >= 16 && hour < 19) return 'evening';
+        return 'night';
+      };
+      
+      const getMode = () => {
+        try {
+          const stored = localStorage.getItem('portfolio-theme-mode');
+          return ['auto', 'light', 'dark'].includes(stored) ? stored : 'auto';
+        } catch (e) {
+          return 'auto';
+        }
+      };
+      
+      const getTheme = (mode) => {
+        if (mode === 'auto') {
+          try {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          } catch (e) {
+            return 'light';
+          }
+        }
+        return mode;
+      };
+      
+      const mode = getMode();
+      const phase = getPhase();
+      const theme = getTheme(mode);
+      
+      document.documentElement.setAttribute('data-mode', mode);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-phase', phase);
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="header-brand">dev • full‑stack</a>
+        
+        <nav class="header-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link" aria-current="page">Contact</a></li>
+          </ul>
+          
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-label">Auto</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <section class="container" style="padding: var(--space-16) 0;">
+      <div class="text-center max-width-prose" style="margin: 0 auto;">
+        <h1>Let's Connect</h1>
+        <p class="text-large text-muted">
+          Ready to discuss your next project? I'd love to hear about your ideas 
+          and explore how we can work together to bring them to life.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="container">
+      <div class="grid grid-2 gap-8">
+        <!-- Contact Form -->
+        <div>
+          <div class="glass-panel">
+            <h2 class="mb-6">Send a Message</h2>
+            
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name" class="form-label">
+                  Name <span style="color: #ef4444;">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-input" 
+                  required 
+                  aria-describedby="name-error"
+                  autocomplete="name"
+                >
+                <span id="name-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">
+                  Email <span style="color: #ef4444;">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-input" 
+                  required 
+                  aria-describedby="email-error"
+                  autocomplete="email"
+                >
+                <span id="email-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject" class="form-label">
+                  Subject <span style="color: #ef4444;">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  class="form-input" 
+                  required 
+                  aria-describedby="subject-error"
+                  placeholder="Project collaboration, consultation, etc."
+                >
+                <span id="subject-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">
+                  Message <span style="color: #ef4444;">*</span>
+                </label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  class="form-textarea" 
+                  required 
+                  aria-describedby="message-error"
+                  placeholder="Tell me about your project, timeline, and any specific requirements..."
+                ></textarea>
+                <span id="message-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="budget" class="form-label">
+                  Project Budget (Optional)
+                </label>
+                <select id="budget" name="budget" class="form-input">
+                  <option value="">Select a range</option>
+                  <option value="under-5k">Under $5,000</option>
+                  <option value="5k-15k">$5,000 - $15,000</option>
+                  <option value="15k-30k">$15,000 - $30,000</option>
+                  <option value="30k-plus">$30,000+</option>
+                  <option value="retainer">Ongoing retainer</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <!-- Contact Methods -->
+          <div class="card cyber-glow mb-8">
+            <h3>Get In Touch</h3>
+            <div class="mb-6">
+              <h4 class="mb-2">Email</h4>
+              <a href="mailto:hello@portfolio.dev" class="text-muted" style="text-decoration: none;">
+                hello@portfolio.dev
+              </a>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="mb-2">Response Time</h4>
+              <p class="text-muted mb-0">
+                I typically respond within 24 hours during business days. 
+                For urgent matters, please mention it in your subject line.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="mb-2">Location</h4>
+              <p class="text-muted mb-0">
+                Based in San Francisco, CA<br>
+                Available for remote work worldwide
+              </p>
+            </div>
+          </div>
+
+          <!-- Alternative Contact -->
+          <div class="card neo-brutal">
+            <h3>Alternative Ways to Connect</h3>
+            
+            <div class="mb-4">
+              <strong>LinkedIn</strong>
+              <p class="text-muted text-sm mb-0">
+                Connect with me for professional networking and updates
+              </p>
+              <a href="#" class="btn mt-2" style="font-size: 0.875rem; padding: var(--space-2) var(--space-4);">
+                View Profile
+              </a>
+            </div>
+
+            <div class="mb-4">
+              <strong>GitHub</strong>
+              <p class="text-muted text-sm mb-0">
+                Check out my open source contributions and projects
+              </p>
+              <a href="#" class="btn mt-2" style="font-size: 0.875rem; padding: var(--space-2) var(--space-4);">
+                View Repositories
+              </a>
+            </div>
+
+            <div class="mb-4">
+              <strong>Schedule a Call</strong>
+              <p class="text-muted text-sm mb-0">
+                Book a 30-minute consultation to discuss your project
+              </p>
+              <a href="#" class="btn mt-2" style="font-size: 0.875rem; padding: var(--space-2) var(--space-4);">
+                Schedule Meeting
+              </a>
+            </div>
+
+            <div>
+              <strong>Direct Contact</strong>
+              <p class="text-muted text-sm mb-2">
+                For immediate inquiries, you can reach me directly:
+              </p>
+              <a href="mailto:hello@portfolio.dev" class="btn btn-primary" style="font-size: 0.875rem; padding: var(--space-2) var(--space-4);">
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container" style="margin-top: var(--space-20);">
+      <h2 class="text-center mb-8">Frequently Asked Questions</h2>
+      
+      <div class="max-width-prose" style="margin: 0 auto;">
+        <div class="card mb-6">
+          <h3>What types of projects do you work on?</h3>
+          <p class="text-muted mb-0">
+            I specialize in full-stack web applications, e-commerce platforms, 
+            SaaS products, and custom business solutions. I work with startups, 
+            established companies, and agencies on projects ranging from MVPs 
+            to enterprise-scale applications.
+          </p>
+        </div>
+
+        <div class="card mb-6">
+          <h3>What's your typical project timeline?</h3>
+          <p class="text-muted mb-0">
+            Project timelines vary based on scope and complexity. Simple websites 
+            typically take 2-4 weeks, while complex web applications can take 
+            8-16 weeks or more. I always provide detailed project estimates 
+            with milestones and deliverables.
+          </p>
+        </div>
+
+        <div class="card mb-6">
+          <h3>Do you work with existing teams?</h3>
+          <p class="text-muted mb-0">
+            Absolutely! I frequently collaborate with in-house development teams, 
+            design agencies, and other contractors. I'm experienced with various 
+            workflows, code review processes, and project management tools.
+          </p>
+        </div>
+
+        <div class="card mb-6">
+          <h3>What's included in your development process?</h3>
+          <p class="text-muted mb-0">
+            My process includes requirements analysis, technical planning, 
+            development, testing, deployment, and post-launch support. 
+            I prioritize clear communication, regular updates, and collaborative 
+            decision-making throughout the project.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Do you provide ongoing maintenance?</h3>
+          <p class="text-muted mb-0">
+            Yes! I offer various maintenance and support packages including 
+            bug fixes, feature updates, performance monitoring, and technical 
+            consultation. Many clients prefer ongoing retainer relationships 
+            for continuous improvements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container" style="margin: var(--space-20) auto; text-align: center;">
+      <div class="glass-panel" style="max-width: 600px; margin: 0 auto;">
+        <h2>Ready to start your project?</h2>
+        <p class="text-large text-muted mb-6">
+          Every great project starts with a conversation. Let's discuss your ideas, 
+          requirements, and how I can help bring your vision to life.
+        </p>
+        <a href="#contact-form" class="btn btn-primary">Fill Out the Form Above</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Success Toast -->
+  <div id="success-toast" class="toast toast-success">
+    <strong>Message sent successfully!</strong><br>
+    Thank you for reaching out. I'll get back to you within 24 hours.
+  </div>
+
+  <!-- Scripts -->
+  <script src="theme.js" defer></script>
+  
+  <!-- Contact form functionality -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contact-form');
+      const toast = document.getElementById('success-toast');
+      
+      // Form validation rules
+      const validators = {
+        name: {
+          required: true,
+          minLength: 2,
+          message: 'Please enter your full name (at least 2 characters)'
+        },
+        email: {
+          required: true,
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          message: 'Please enter a valid email address'
+        },
+        subject: {
+          required: true,
+          minLength: 5,
+          message: 'Please enter a subject (at least 5 characters)'
+        },
+        message: {
+          required: true,
+          minLength: 20,
+          message: 'Please enter a detailed message (at least 20 characters)'
+        }
+      };
+
+      // Validate individual field
+      function validateField(fieldName, value) {
+        const rules = validators[fieldName];
+        if (!rules) return { isValid: true };
+
+        // Required validation
+        if (rules.required && (!value || value.trim().length === 0)) {
+          return { isValid: false, message: rules.message };
+        }
+
+        // Skip other validations if field is empty and not required
+        if (!value || value.trim().length === 0) {
+          return { isValid: true };
+        }
+
+        // Length validation
+        if (rules.minLength && value.trim().length < rules.minLength) {
+          return { isValid: false, message: rules.message };
+        }
+
+        // Pattern validation (for email)
+        if (rules.pattern && !rules.pattern.test(value.trim())) {
+          return { isValid: false, message: rules.message };
+        }
+
+        return { isValid: true };
+      }
+
+      // Show field error
+      function showFieldError(fieldName, message) {
+        const field = document.getElementById(fieldName);
+        const errorElement = document.getElementById(fieldName + '-error');
+        
+        field.classList.add('error');
+        errorElement.textContent = message;
+        
+        // Set aria-invalid
+        field.setAttribute('aria-invalid', 'true');
+      }
+
+      // Clear field error
+      function clearFieldError(fieldName) {
+        const field = document.getElementById(fieldName);
+        const errorElement = document.getElementById(fieldName + '-error');
+        
+        field.classList.remove('error');
+        errorElement.textContent = '';
+        
+        // Remove aria-invalid
+        field.removeAttribute('aria-invalid');
+      }
+
+      // Real-time validation
+      Object.keys(validators).forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        
+        field.addEventListener('blur', function() {
+          const validation = validateField(fieldName, this.value);
+          if (validation.isValid) {
+            clearFieldError(fieldName);
+          } else {
+            showFieldError(fieldName, validation.message);
+          }
+        });
+
+        // Clear error on input
+        field.addEventListener('input', function() {
+          if (this.classList.contains('error')) {
+            clearFieldError(fieldName);
+          }
+        });
+      });
+
+      // Show success toast
+      function showSuccessToast() {
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 5000);
+      }
+
+      // Create mailto link as fallback
+      function createMailtoFallback(formData) {
+        const subject = encodeURIComponent(formData.get('subject'));
+        const body = encodeURIComponent(
+          `Name: ${formData.get('name')}\n` +
+          `Email: ${formData.get('email')}\n` +
+          `Budget: ${formData.get('budget') || 'Not specified'}\n\n` +
+          `Message:\n${formData.get('message')}`
+        );
+        
+        return `mailto:hello@portfolio.dev?subject=${subject}&body=${body}`;
+      }
+
+      // Form submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        let isFormValid = true;
+        
+        // Validate all fields
+        Object.keys(validators).forEach(fieldName => {
+          const value = formData.get(fieldName);
+          const validation = validateField(fieldName, value);
+          
+          if (validation.isValid) {
+            clearFieldError(fieldName);
+          } else {
+            showFieldError(fieldName, validation.message);
+            isFormValid = false;
+          }
+        });
+
+        if (!isFormValid) {
+          // Focus first error field
+          const firstError = form.querySelector('.error');
+          if (firstError) {
+            firstError.focus();
+          }
+          return;
+        }
+
+        // Since this is a demo, we'll show success and provide mailto fallback
+        showSuccessToast();
+        
+        // Reset form
+        form.reset();
+        
+        // Optional: Open mailto as fallback
+        setTimeout(() => {
+          const mailtoLink = createMailtoFallback(formData);
+          const shouldOpenMailto = confirm(
+            'This is a demo form. Would you like to open your email client to send the message?'
+          );
+          
+          if (shouldOpenMailto) {
+            window.location.href = mailtoLink;
+          }
+        }, 1000);
+      });
+
+      // Smooth scroll to form when CTA is clicked
+      document.addEventListener('click', function(e) {
+        if (e.target.getAttribute('href') === '#contact-form') {
+          e.preventDefault();
+          form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Focus first field for accessibility
+          setTimeout(() => {
+            document.getElementById('name').focus();
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
